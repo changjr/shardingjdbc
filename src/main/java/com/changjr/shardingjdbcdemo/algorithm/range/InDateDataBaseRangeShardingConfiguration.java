@@ -17,8 +17,6 @@ import java.util.LinkedHashSet;
 /**
  * <h1>范围值控制分库分表</h1>
  *
- * @author gengzi
- * @date 2020年7月2日11:07:15
  */
 public class InDateDataBaseRangeShardingConfiguration implements PreciseShardingAlgorithm<Date>, RangeShardingAlgorithm<Date> {
 

@@ -12,9 +12,7 @@ import java.util.Date;
 
 /**
  * <h1>日期的分库策略</h1>
- *
- * @author gengzi
- * @date 2020年7月1日15:56:32
+
  */
 public class InDateShardingStrategyConfiguration implements PreciseShardingAlgorithm<Date> {
     private Logger logger = LoggerFactory.getLogger(InDateShardingStrategyConfiguration.class);
