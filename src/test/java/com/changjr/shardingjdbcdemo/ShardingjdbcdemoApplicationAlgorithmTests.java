@@ -41,4 +41,5 @@ public class ShardingjdbcdemoApplicationAlgorithmTests {
     List<Course> courses = courseMapper.selectList(wrapper);
     System.out.println(courses.toString());
   }
+  
 }
