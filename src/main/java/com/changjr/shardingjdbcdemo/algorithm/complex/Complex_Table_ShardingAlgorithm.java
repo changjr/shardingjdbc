@@ -9,15 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Complex_Table_ShardingAlgorithm implements ComplexKeysShardingAlgorithm {
-  
-  
   @Override
   public Collection<String> doSharding(Collection collection, ComplexKeysShardingValue complexKeysShardingValue) {
     System.out.println("复合匹配策略：PreciseStrategyConfiguration");
-  
     // 得到每个分片健对应的值
     Collection<Long> userIdValues = this.getShardingValue(complexKeysShardingValue, "user_id");
-  
     List<String> shardingSuffix = new ArrayList<>();
       for (Long id : userIdValues) {
         Long suffix = id % 2 + 1 ;
@@ -29,8 +25,6 @@ public class Complex_Table_ShardingAlgorithm implements ComplexKeysShardingAlgor
     }
     return shardingSuffix;
   }
-  
-  
   private Collection<Integer> getShardingValue(
           ComplexKeysShardingValue<Integer> shardingValues, final String key) {
     Collection<Integer> valueSet = new ArrayList<>();

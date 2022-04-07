@@ -29,7 +29,7 @@ public class ShardingjdbcdemoApplicationTests {
   @Test
   public void initUser() {
     Random random = new Random();
-    for (int i = 0; i <= 100; i++) {
+    for (int i = 0; i < 100; i++) {
       User user = new User();
       user.setUsername("UserName_" + i);
       if (random.nextInt(10) % 2 == 0) {
@@ -82,8 +82,8 @@ public class ShardingjdbcdemoApplicationTests {
 
   // 查询操作 分页排序 原理
   @Test
-  public void findCourseDbByUserId() {
-    PageHelper.startPage(10, 3);
+  public void findCourseByStatus() {
+    PageHelper.startPage(10, 5);
     QueryWrapper<Course> wrapper = new QueryWrapper<>();
 
     // 设置cid值

@@ -33,7 +33,18 @@ public class ShardingjdbcdemoApplicationAlgorithmTests {
     List<Course> courses = courseMapper.selectList(wrapper);
     System.out.println(courses.toString());
   }
-
+  
+  
+  
+  
+  @Test
+  public void findCourseByRange() {
+    QueryWrapper<Course> wrapper = new QueryWrapper<>();
+    wrapper.between("status",2022,3033);
+    List<Course> courses = courseMapper.selectList(wrapper);
+    System.out.println(courses.toString());
+  }
+  
   // ComplexKeysShardingAlgorithm 进行复杂策略分片
   //  Complex_Table_ShardingAlgorithm类控制表
   //  ComplexShardingAlgorithm类控制数据源
