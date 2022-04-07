@@ -40,21 +40,7 @@ public class ShardingjdbcdemoApplicationTests {
       userMapper.insert(user);
     }
   }
-
-  // 查询user 按照不同维度 按照分库的维度
-  @Test
-  public void findUser() {
-    PageHelper.startPage(2, 10);
-    QueryWrapper<User> wrapper = new QueryWrapper<>();
-    wrapper.eq("ustatus", 2021); // 指定之后根据 或锁定查询的库
-    //    wrapper.in("ustatus", 2021,2022); //
-    //    wrapper.eq("username","UserName_0");
-    wrapper.eq("user_id", 718521855022989313L);
-
-    List<User> users = userMapper.selectList(wrapper);
-    System.out.println(users.toString());
-  }
-
+  
   // 添加操作 按照人员维度 每人四门课 按照status分库 按照user_id分表
   @Test
   public void addCourseDb() {
@@ -69,6 +55,21 @@ public class ShardingjdbcdemoApplicationTests {
       }
     }
   }
+  
+  // 查询user 按照不同维度 按照分库的维度
+  @Test
+  public void findUser() {
+    PageHelper.startPage(2, 10);
+    QueryWrapper<User> wrapper = new QueryWrapper<>();
+    wrapper.eq("ustatus", 2021); // 指定之后根据 或锁定查询的库
+    //    wrapper.in("ustatus", 2021,2022); //
+    //    wrapper.eq("username","UserName_0");
+    wrapper.eq("user_id", 718521855022989313L);
+
+    List<User> users = userMapper.selectList(wrapper);
+    System.out.println(users.toString());
+  }
+  
 
   //  按照分表user_id查询 user_id为奇数 只会命中course_2， 没有分库标识 会查询所有分库
   @Test
