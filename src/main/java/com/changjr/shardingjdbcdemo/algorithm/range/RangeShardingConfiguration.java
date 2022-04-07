@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class RangeShardingConfiguration  implements RangeShardingAlgorithm,PreciseShardingAlgorithm {
+public class RangeShardingConfiguration implements RangeShardingAlgorithm {
   @Override
   public Collection<String> doSharding(
       Collection collection, RangeShardingValue rangeShardingValue) {
@@ -27,31 +27,16 @@ public class RangeShardingConfiguration  implements RangeShardingAlgorithm,Preci
     Integer upper = Integer.parseInt(rangeShardingValue.getValueRange().upperEndpoint().toString());
     // 循环范围计算分库逻辑
     for (int i = lower; i <= upper; i++) {
+      //      根据业务代码处理选库逻辑
+      if (i > 2022 || i < 2021) {
+        continue;
+      }
       for (Object databaseName : collection) {
-        if (databaseName.toString().endsWith(String.valueOf( i % 2 + 1))) {
+        if (databaseName.toString().endsWith(String.valueOf(i % 2 + 1))) {
           result.add(databaseName.toString());
         }
       }
     }
     return result;
   }
-  
-  @Override
-  public String doSharding(Collection collection, PreciseShardingValue preciseShardingValue) {
-    System.out.println("精准匹配策略：PreciseStrategyConfiguration");
-  
-    /**
-     * tableNames 对应分片库中所有分片表的集合 shardingValue 为分片属性，其中 logicTableName 为逻辑表，columnName 分片健（字段），value
-     * 为从 SQL 中解析出的分片健的值
-     */
-    for (Object tableName : collection) {
-      /** 取模算法，分片健 % 表数量 */
-      Integer value =Integer.valueOf(preciseShardingValue.getValue().toString()) % 2 + 1;
-      if (tableName.toString().endsWith(String.valueOf(value))) {
-        return tableName.toString();
-      }
-    }
-    throw new IllegalArgumentException();
-  }
-  
 }

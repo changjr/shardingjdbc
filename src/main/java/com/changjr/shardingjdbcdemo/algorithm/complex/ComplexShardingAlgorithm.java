@@ -17,7 +17,6 @@ public class ComplexShardingAlgorithm implements ComplexKeysShardingAlgorithm {
   
     // 得到每个分片健对应的值
     Collection<Integer> status = this.getShardingValue(complexKeysShardingValue, "status");
-    Collection<Long> userIdValues = this.getShardingValue(complexKeysShardingValue, "user_id");
   
     List<String> shardingSuffix = new ArrayList<>();
       for (Integer stat : status) {
