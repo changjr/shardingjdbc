@@ -15,7 +15,6 @@ public class PreciseStrategyConfiguration implements PreciseShardingAlgorithm<In
   @Override
   public String doSharding(
       Collection<String> collection, PreciseShardingValue<Integer> preciseShardingValue) {
-    System.out.println("PreciseStrategyConfiguration````````````````````````````````````");
     System.out.println("精准匹配策略：PreciseStrategyConfiguration");
 
     /**
