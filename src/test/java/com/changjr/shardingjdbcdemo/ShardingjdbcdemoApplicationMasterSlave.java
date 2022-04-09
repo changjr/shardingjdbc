@@ -21,11 +21,21 @@ public class ShardingjdbcdemoApplicationMasterSlave {
     Log log = new Log();
     log.setMemo("master");
     logMapper.insert(log);
+    List<Log> logs1 = logMapper.selectList(null);
+    System.out.println(logs1.toString());
+    
   }
 
   // select语句默认读取从库slave
   @Test
   public void query_Slave() {
+    List<Log> logs = logMapper.selectList(null);
+    System.out.println(logs.toString());
+    
+  }
+  
+  @Test
+  public void query_insert_Slave() {
     List<Log> logs = logMapper.selectList(null);
     System.out.println(logs.toString());
   }

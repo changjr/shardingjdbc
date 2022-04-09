@@ -59,11 +59,11 @@ public class ShardingjdbcdemoApplicationTests {
   // 查询user 按照不同维度 按照分库的维度
   @Test
   public void findUser() {
-    PageHelper.startPage(2, 10);
+//    PageHelper.startPage(2, 10);
     QueryWrapper<User> wrapper = new QueryWrapper<>();
     wrapper.eq("ustatus", 2021); // 指定之后根据 或锁定查询的库
     //    wrapper.in("ustatus", 2021,2022); //
-    //    wrapper.eq("username","UserName_0");
+        wrapper.eq("username","UserName_0");
     wrapper.eq("user_id", 718521855022989313L);
 
     List<User> users = userMapper.selectList(wrapper);
@@ -76,7 +76,7 @@ public class ShardingjdbcdemoApplicationTests {
   public void findCourseDbByIn() {
     QueryWrapper<Course> wrapper = new QueryWrapper<>();
     wrapper.in("user_id", 718521855668912129L, 718521855740215297L, 718521855807324161L);
-    //    wrapper.eq("status", 2021);
+       wrapper.eq("status", 2021);
     List<Course> courses = courseMapper.selectList(wrapper);
     System.out.println(courses.toString());
   }
